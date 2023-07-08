@@ -66,12 +66,8 @@ section {
     padding: 3rem 2rem;
     margin: 0 auto;
     max-width: 1200px;
-    /* text-align: center; */
 }
 
-/* .btn{
-
-} */
 
 .header {
     position: fixed;
@@ -97,6 +93,7 @@ section {
 }
 
 .header .logo {
+    position: relative;
     text-transform: uppercase;
     border-bottom: var(--border-bold);
     font-weight: bolder;
@@ -104,6 +101,7 @@ section {
 }
 
 .header .navbar {
+    position: relative;
     width: 100%;
 }
 
@@ -157,13 +155,16 @@ section {
 }
 
 .home {
+    position: relative;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    padding-top: 5%;
     gap: 2rem;
 }
 
 .home .image {
+    position: relative;
     flex: 1 1 40rem;
 }
 
@@ -185,6 +186,7 @@ section {
 } */
 
 .home .content h1 {
+    /* position: relative; */
     font-size: 5.6rem;
     font-weight: 700;
     line-height: 1.3rem;
@@ -205,6 +207,9 @@ section {
     background-repeat: no-repeat;
     -webkit-background-clip: text;
     background-position: -33rem 0;
+}
+
+.home.show-animate .content .text-animate h3 {
     animation: homeBgText 6s linear infinite;
     animation-delay: 2s;
 }
@@ -218,11 +223,15 @@ section {
     height: 100%;
     border-right: 4px solid var(--sky);
     z-index: -1;
+}
+
+.home.show-animate .content .text-animate h3::before{
     animation: homeCursorText 6s linear infinite;
     animation-delay: 2s;
 }
 
 .home .content p {
+    position: relative;
     font-size: 1.6rem;
     margin: 2rem 0 4rem;
 }
@@ -289,11 +298,11 @@ section {
 }
 
 .home-sci {
-    /* position: absolute; */
-    padding-top: 10%;
+    position: relative;
+    padding-top: 20%;
     bottom: 4rem;
     width: 170px;
-    display: flex;
+    display: inline-block;
     justify-content: space-between;
 }
 
@@ -350,6 +359,7 @@ section {
 }
 
 .heading {
+    position: relative;
     font-size: 5rem;
     margin-bottom: 3rem;
     text-align: center;
@@ -387,6 +397,7 @@ span {
     border-bottom: .2rem solid var(--second-bg-color);
     border-left: .2rem solid var(--sky);
     border-right: .2rem solid var(--sky);
+    animation: aboutSpinner 8s linear infinite;
 }
 
 .about-content {
@@ -394,10 +405,13 @@ span {
 }
 
 .about-content h3 {
+    position: relative;
+    display: inline-block;
     font-size: 2.6rem;
 }
 
 .about-content p {
+    position: relative;
     font-size: 1.6rem;
     margin: 2rem 0 3rem;
 }
@@ -431,11 +445,14 @@ span {
 }
 
 .education-column .title {
+    position: relative;
+    display: inline-block;
     font-size: 2.5rem;
     margin: 0 0 1.5rem 2rem;
 }
 
 .education-column .education-box {
+    position: relative;
     border-left: .2rem solid var(--sky);
 }
 
@@ -505,6 +522,12 @@ span {
     background: var(--second-bg-color);
 }
 
+.skills h2{
+    display: inline-block;
+    left: 50%;
+    transform: translate(-50%);
+}
+
 .skills .skills-row {
     display: flex;
     flex-wrap: wrap;
@@ -516,8 +539,14 @@ span {
 }
 
 .skills-column .title {
+    position: relative;
+    display: inline-block;
     font-size: 2.5rem;
     margin: 0 0 1.5rem;
+}
+
+.skills-column .skills-box{
+    position: relative;
 }
 
 .skills-box .skills-content {
@@ -612,6 +641,12 @@ span {
     padding-bottom: 7rem;
 }
 
+.contact h2{
+    display: inline-block;
+    left: 50%;
+    transform: translate(-50%);
+}
+
 .contact form {
     max-width: 70rem;
     margin: 0 auto;
@@ -663,6 +698,7 @@ span {
 }
 
 .contact .box-container {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 1.5rem;
@@ -671,6 +707,7 @@ span {
 }
 
 .contact .box-container .box {
+    position: relative;
     text-align: center;
     padding: 3rem 2rem;
     border: .2rem solid var(--sky);
@@ -702,6 +739,11 @@ span {
     flex-wrap: wrap;
     padding: 2rem 9%;
     background: var(--second-bg-color);
+}
+
+.footer-text,
+.footer-iconTop{
+    position: relative;
 }
 
 .footer-text p {
@@ -746,6 +788,67 @@ span {
     color: var(--white);
 }
 
+/* Animation relode and scroll */
+
+.animate{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    z-index: 98;
+}
+
+.logo .animate,
+.navbar .animate,
+.header.active .animate,
+.home.show-animate .animate{
+    animation: showRight 1s ease forwards;
+    animation-delay: calc(.3s * var(--i));
+}
+
+.animate.scroll{
+    transition: 1s ease;
+    animation-delay: calc(.3s / var(--i));
+    animation: none;
+}
+
+section:nth-child(odd) .animate.scroll,
+.footer .animate.scroll{
+    background-color: var(--second-bg-color);
+}
+
+.education .education-box .animate.scroll{
+    width: 105%;
+}
+
+.about.show-animate .animate.scroll,
+.education.show-animate .animate.scroll,
+.skills.show-animate .animate.scroll,
+.contact.show-animate .animate.scroll,
+.footer.show-animate .animate.scroll{
+    transition-delay: calc(.3s * var(--i));
+    width: 0;
+}
+
+.message{
+    position: sticky;
+    top: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--yellow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    font-size: 3rem;
+}
+
+.message span{
+    color: var(--bg-color)
+}
+
 
 
 
@@ -779,7 +882,7 @@ span {
     }
 }
 
-@media (max-width:850px) {
+@media (max-width:860px) {
 
     .home .image {
         text-align: center;
@@ -840,5 +943,18 @@ span {
     75%,
     81% {
         opacity: 0;
+    }
+}
+
+@keyframes aboutSpinner {
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes showRight{
+    100%{
+        width: 0;
     }
 }
